@@ -35,42 +35,9 @@ app.use("/api/tasks",taskRoutes);
 app.use("/api/reports",reportRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// Default API endpoint for testing
-app.get("/", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "Task Flow API is running successfully!",
-        version: "1.0.0",
-        timestamp: new Date().toISOString(),
-        endpoints: {
-            auth: "/api/auth",
-            users: "/api/users", 
-            tasks: "/api/tasks",
-            reports: "/api/reports"
-        }
-    });
-});
-
-// API health check endpoint
-app.get("/api/health", (req, res) => {
-    res.status(200).json({
-        status: "OK",
-        message: "Server is healthy",
-        uptime: process.uptime(),
-        timestamp: new Date().toISOString()
-    });
-});
-
-// Catch all undefined routes
-app.use("*", (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found",
-        availableRoutes: ["/", "/api/health", "/api/auth", "/api/users", "/api/tasks", "/api/reports"]
-    });
-});
-
+app.use("/",(res,req)=>{
+    console.log('api');
+})
 //Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
