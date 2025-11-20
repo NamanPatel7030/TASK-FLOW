@@ -1,0 +1,24 @@
+{
+  "name": "task-flow-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack Task Flow application",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd fontend/task-flow && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd fontend/task-flow && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start:backend": "cd backend && npm start",
+    "preview:frontend": "cd fontend/task-flow && npm run preview",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd fontend/task-flow && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend"
+  },
+  "keywords": ["task-management", "fullstack", "react", "node", "express"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

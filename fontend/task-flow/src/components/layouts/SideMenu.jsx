@@ -2,6 +2,7 @@ import  React, { useContext, useEffect, useState } from "react";
 import { SIDE_MENU_DATA, SIDE_MENU_USER_DATA } from "../../utils/data";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 const SideMenu =({activeMenu})=>{
     const {user , clearUser} = useContext(UserContext);
@@ -32,19 +33,23 @@ const SideMenu =({activeMenu})=>{
     return <div className="w-64 h-[calc(100vh-61px)] bg-white border-r border-gray-200/50 sticky top-[61px] z-20 ">
         <div className="flex flex-col items-center justify-center mb-7 pt-5">
             <div className="relative">
-                <img
-                // src = {user?.profileImageUrl || ""}
-                                src = {user?.profileImageUrl }
-
-                alt = "Profile Image"
-                className="w-20 h-20 bg-slate-400 rounded-full"
-                />
+                {user?.profileImageUrl ? (
+                    <img
+                        src={user.profileImageUrl}
+                        alt="Profile Image"
+                        className="w-20 h-20 bg-slate-400 rounded-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-20 h-20 bg-slate-400 rounded-full flex items-center justify-center">
+                        <FaUser className="text-white text-2xl" />
+                    </div>
+                )}
             </div>
-            {user?.role === "admin"&&(
-                <div className="text-[10px] font-medium text-white bg-primary px-3 py-0.5 rounded mt-1">
-                    Admin
-                </div>
-            )}
+                {user?.role === "admin"&&(
+                    <div className="text-[10px] font-medium text-white bg-primary px-3 py-0.5 rounded mt-1">
+                        Admin
+                    </div>
+                )}
 
             <h5 className="text-gray-950 font-medium leading-6 mt-3">
                 {user?.name || ""}
